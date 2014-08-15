@@ -1,0 +1,10 @@
+{
+  "checks": {
+    "esx_check": {
+      "handlers": ["default", "email"],
+      "command": "ssh root@esxi1.mydomain.local /etc/init.d/hostd status",
+      "interval": 60,
+      "subscribers": [ "webservers" ]
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "rabbitmq": {
+    "host": "localhost",
+    "port": 5672,
+    "user": "sensu",
+    "password": "sensu",
+    "vhost": "/sensu"
+  },
+  "redis": {
+    "host": "localhost",
+    "port": 6379
+  },
+  "api": {
+    "host": "localhost",
+    "port": 4567,
+	"user": "sensu",
+	"password": "sensu"
+  },
+  "handlers": {
+    "default": {
+      "type": "set",
+      "handlers": [
+        "stdout","email"
+      ]
+    },
+    "stdout": {
+      "type": "pipe",
+      "command": "cat"
+    }
+  },
+  "checks": {
+    "test": {
+      "command": "echo -n OK",
+      "subscribers": [
+        "test", "webservers"
+      ],
+      "interval": 60
+     },
+     "chef_client": {
+     	"command": "check-chef-client.rb",
+      "subscribers": [
+		"test", "webservers"
+		],
+      "interval": 60
+       },
+	"check_esx": {
+		"command": "check-esx-services.rb",
+	"subscribers": [
+			"test", "webservers", "esxi"
+			],
+	"interval": 60
+	}
+  },
+  "client": {
+    "name": "jasmine",
+    "address": "127.0.0.1",
+    "subscriptions": [
+      "test", "webservers"
+    ],
+    
+    "name": "esxi",
+    "address": "10.10.10.101",
+	"keepalive": {
+      	"thresholds": {
+        "warning": 60,
+        "critical": 120
+      },
+      "handler": "keepalive"
+	},
+    "subscriptions": [
+      "esxi"
+    ]
+  }
+}

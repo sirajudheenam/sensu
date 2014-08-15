@@ -1,0 +1,13 @@
+  {
+  "rabbitmq": {
+    "ssl": {
+      "cert_chain_file": "/etc/rabbitmq/ssl/cert.pem",
+      "private_key_file": "/etc/rabbitmq/ssl/key.pem"
+    },
+    "host": "localhost",
+    "port": 5671,
+    "vhost": "/sensu",
+    "user": "sensu",
+    "password": "Sybase123"
+  }
+}

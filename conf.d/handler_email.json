@@ -1,0 +1,8 @@
+{
+  "handlers": {
+    "email": {
+      "type": "pipe",
+      "command": "mailx -s 'sensu CUSTOM alert' sirajudheenam@gmail.com"
+    }
+  }
+}
